@@ -1,0 +1,10 @@
+/*.movie-item {
+  display: flex !important;
+  align-items: center !important;
+  cursor: pointer;
+  
+} */
+
+.movie-item.item img {
+  max-width: 100px;
+}
