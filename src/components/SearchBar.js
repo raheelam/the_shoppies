@@ -1,12 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const SearchBar = ({ onFormSubmit }) => {
+const SearchBar = ({ onFormSubmit ,setSearchTerm}) => {
   const [term, setTerm] = useState('');
+  const [debouncedTerm, setDebouncedTerm] = useState('');
+
+  useEffect(() => {
+    setSearchTerm(term);
+    
+    const timerId = setTimeout(() => {
+      setDebouncedTerm(term);
+    }, 1500);
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [term]);
+
+  useEffect(() => {
+    
+    onFormSubmit(debouncedTerm);
+    
+  }, [debouncedTerm]);
 
   const onSubmit = (event) => {
     event.preventDefault();
+    if(term.length > 0){
+      
+      onFormSubmit(term);
 
-    onFormSubmit(term);
+    }
+   
   };
 
   return (
@@ -14,13 +37,13 @@ const SearchBar = ({ onFormSubmit }) => {
       <form onSubmit={onSubmit} className="ui form">
         <div className="field">
           <label>Movie Search</label>
-          <div class="ui icon input ">
+          <div className="ui icon input ">
             <input type="text" 
             placeholder="Search for a movie by title..."
             value={term}
             onChange={(event) => setTerm(event.target.value)}
             />
-            <i class="search icon"></i>
+            <i className="search loading icon"></i>
           </div>
         </div>
       </form>

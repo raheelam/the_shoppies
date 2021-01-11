@@ -1,4 +1,3 @@
-import React, {useState, useEffect} from 'react';
 import MovieList from './MovieList';
 
 
@@ -8,14 +7,10 @@ const NominatedMovies = ({ onRemove, nominatedMovies}) => {
  
  
   
-  if (nominatedMovies.length === null) {
-    return <div>Loading...</div>;
+  if (nominatedMovies.length === 0) {
+    return <div>You haven't nominated any movies yet.</div>;
   }
 console.log("nominated: moviees: "+ nominatedMovies);
- // setNominatedMovies((nominatedMovies.concat(movie)));
- // setNominatedMovies(nominatedMovies.concat(movie));
-  
-  
 
   return (
     <MovieList  movies={nominatedMovies} action="remove" onMovieSelect = {onRemove}/>

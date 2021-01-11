@@ -4,20 +4,46 @@ import axios from 'axios';
 
 const useMovies = () => {
   const [movies, setMovies] = useState([]);
-
+  
   
   const search = async (term) => {
+    if(term === ''){
+      setMovies({Error: ' '});
+      return;
+    }
     const key = process.env.REACT_APP_OMDB_API_KEY;
+    console.log(key);
     const newLocal = 'http://www.omdbapi.com/';
     const response = await axios.get(newLocal, {
       params: {
         s: decodeURI(term),
-        apikey: key,
+        apikey: key
+        
         
       },
     });
-    console.log(response);
-    setMovies(response.data.Search); 
+    
+    if(response.data.Error){
+      
+      if(response.data.Error==="Too many results."){
+        setMovies({Error: "Can you please be more specific with your search? (E.g title with release year)"}); 
+
+      }else{
+       
+        setMovies({Error:response.data.Error});
+        
+      }
+      
+    }else{
+      
+      setMovies(response.data.Search); 
+
+    }
+      
+
+    
+    
+    
    /* let test = [
       {Title: "harry potter and the sorcerers stone",
       Year: "1890",
@@ -48,9 +74,11 @@ const useMovies = () => {
     console.log(test);
     setMovies(test); */
     
+    
   };
   
-  return [movies, search, setMovies];
+  
+  return [movies, search];
 };
 
 export default useMovies;

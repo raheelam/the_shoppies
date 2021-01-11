@@ -1,8 +1,7 @@
 import './MovieItem.css';
-import React, {useState, useEffect} from 'react';
+
 
 const MovieItem = ({ movie, onMovieSelect, action }) => {
-  const [open, setOpen] = useState(false);
   return (
     <div  className="movie-item item">
       <img
