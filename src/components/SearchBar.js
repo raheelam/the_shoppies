@@ -4,23 +4,26 @@ const SearchBar = ({ onFormSubmit ,setSearchTerm}) => {
   const [term, setTerm] = useState('');
   const [debouncedTerm, setDebouncedTerm] = useState('');
 
-  useEffect(() => {
-    setSearchTerm(term);
+  
     
+  
+  useEffect(() => {                                                                                                    
     const timerId = setTimeout(() => {
       setDebouncedTerm(term);
     }, 1500);
+     
 
     return () => {
+      
       clearTimeout(timerId);
     };
   }, [term]);
 
   useEffect(() => {
-    
-    onFormSubmit(debouncedTerm);
-    
-  }, [debouncedTerm]);
+      
+  const submit =()=>{onFormSubmit(debouncedTerm);}
+    submit();
+  }, [debouncedTerm,onFormSubmit]);
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -41,7 +44,9 @@ const SearchBar = ({ onFormSubmit ,setSearchTerm}) => {
             <input type="text" 
             placeholder="Search for a movie by title..."
             value={term}
-            onChange={(event) => setTerm(event.target.value)}
+            onChange={(event) => {setTerm(event.target.value)
+              setSearchTerm(term); 
+            }}
             />
             <i className="search loading icon"></i>
           </div>

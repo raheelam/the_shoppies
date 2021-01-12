@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import axios from 'axios';
 
 
@@ -6,7 +6,7 @@ const useMovies = () => {
   const [movies, setMovies] = useState([]);
   
   
-  const search = async (term) => {
+  const search =useCallback( async (term) => {
     if(term === ''){
       setMovies({Error: ' '});
       return;
@@ -75,7 +75,7 @@ const useMovies = () => {
     setMovies(test); */
     
     
-  };
+  }, []);
   
   
   return [movies, search];
