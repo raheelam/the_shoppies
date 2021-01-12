@@ -67,11 +67,11 @@ setNominatedMovies(nominatedMovies.concat(movie));
       <SearchBar onFormSubmit={search} setSearchTerm={setSearchTerm} />
       <div className="ui grid segment" >
         <div className="ui row " style={{height:"72vh", overflow:"hidden"}} >
-          <div className="nine wide column grey" style={movStyle} >
+          <div className="eight wide column grey" style={movStyle} >
             <h3>{searchTerm? `Results for "${searchTerm}":`:'Search for a movie to nominate'}</h3>
             <MovieList  onMovieSelect={onNominate} movies={movies} action="Nominate" />
           </div>
-          <div className="six wide column right floated grey" style={movStyle}>
+          <div className="seven wide column right floated grey" style={movStyle}>
             <h3>Nominations </h3><span className="banner" style={nominatedMovies.length===5?{display:"inline-block"}:{display:"none"}}>You have nominated 5 movies.   &nbsp; Thank You!!!</span>
             <NominatedMovies  nominatedMovies={nominatedMovies} onRemove={onRemove}  />
           </div>
