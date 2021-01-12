@@ -40,7 +40,7 @@ const MovieList = ({ movies, onMovieSelect, action}) => {
     
 
 
-  return <div className="ui relaxed divided list">{results()}</div>;
+  return <div style={{height:"54vh", overflow:"auto"}} className="ui relaxed divided list">{results()}</div>;
 };
 
 export default MovieList;

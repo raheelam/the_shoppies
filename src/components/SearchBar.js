@@ -44,11 +44,11 @@ const SearchBar = ({ onFormSubmit ,setSearchTerm}) => {
             <input type="text" 
             placeholder="Search for a movie by title..."
             value={term}
-            onChange={(event) => {setTerm(event.target.value)
-              setSearchTerm(term); 
+            onChange={(event) => {setTerm(event.target.value);
+              setSearchTerm(event.target.value); 
             }}
             />
-            <i className="search loading icon"></i>
+            <i className="search  icon"></i>
           </div>
         </div>
       </form>

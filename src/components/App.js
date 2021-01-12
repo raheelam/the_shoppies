@@ -52,20 +52,27 @@ setNominatedMovies(nominatedMovies.concat(movie));
       alert("you cant choose more than five");
   }
   }
-  
+  const movStyle = {
+    //height: "65vh",
+    //overflow: "auto"
+  }
   
   return (
+   
     <div className="ui container padding-top " >
+    
+    
+    
       <h1>The Shoppies</h1>
       <SearchBar onFormSubmit={search} setSearchTerm={setSearchTerm} />
       <div className="ui grid segment" >
-        <div className="ui row "  >
-          <div className="nine wide column grey"  >
+        <div className="ui row " style={{height:"72vh", overflow:"hidden"}} >
+          <div className="nine wide column grey" style={movStyle} >
             <h1>{searchTerm? `Results for "${searchTerm}":`:'Search for a movie to nominate'}</h1>
             <MovieList  onMovieSelect={onNominate} movies={movies} action="Nominate" />
           </div>
-          <div className="six wide column right floated grey">
-            <h1>Nominations</h1>
+          <div className="six wide column right floated grey" style={movStyle}>
+            <h1>Nominations </h1><span className="banner" style={nominatedMovies.length===5?{display:"inline-block"}:{display:"none"}}>You have nominated 5 movies.   &nbsp; Thank You!!!</span>
             <NominatedMovies  nominatedMovies={nominatedMovies} onRemove={onRemove}  />
           </div>
         </div>
