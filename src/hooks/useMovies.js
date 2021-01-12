@@ -13,7 +13,7 @@ const useMovies = () => {
     }
     const key = process.env.REACT_APP_OMDB_API_KEY;
     console.log(key);
-    const newLocal = 'http://www.omdbapi.com/';
+    const newLocal = 'https://www.omdbapi.com/';
     const response = await axios.get(newLocal, {
       params: {
         s: decodeURI(term),
