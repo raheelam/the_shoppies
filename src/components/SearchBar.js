@@ -10,7 +10,7 @@ const SearchBar = ({ onFormSubmit ,setSearchTerm}) => {
   useEffect(() => {                                                                                                    
     const timerId = setTimeout(() => {
       setDebouncedTerm(term);
-    }, 1500);
+    }, 800);
      
 
     return () => {
